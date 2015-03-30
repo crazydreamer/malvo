@@ -18,8 +18,8 @@
   </head>
 
   <body>
-    {% block body %}
-      {% block nav %}
+  {% block body %}
+    {% block nav %}
       <nav class="navbar navbar-inverse">
         <div class="container">
           <div class="navbar-header">
@@ -43,17 +43,18 @@
           </div>
         </div>
       </nav>
-      {% endblock %}
-
-      {% block content %}
-
-      {% endblock %}
-
-      <script src="{{ url_for('static', filename='js/jquery-2.1.3.min.js') }}"></script>
-      <script>
-        {% block script %}
-        {% endblock %}
-      </script>
     {% endblock %}
+
+    {% block content %}
+
+    {% endblock %}
+
+    <script src="{{ url_for('static', filename='js/jquery-2.1.3.min.js') }}"></script>
+    <script>
+    {% block script %}
+    
+    {% endblock %}
+    </script>
+  {% endblock %}
   </body>
 </html>
