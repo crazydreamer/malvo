@@ -8,7 +8,7 @@ from .. import db
 
 @auth.route('/login')
 def login():
-    return 'Login'
+    return render_template('auth/login.html')
 
 
 @auth.route('/register', methods=['GET', 'POST'])
@@ -34,4 +34,4 @@ def register():
         db.session.commit()
         flash('{} was registed successfully'.format(form.name.data))
         return redirect(url_for('.register'))
-    return render_template('/auth/register.html', form=form)
+    return render_template('auth/register.html', form=form)

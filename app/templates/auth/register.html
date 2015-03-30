@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %} Register Team {% endblock %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-5 col-md-6 col-sm-7  col-lg-offset-3 col-md-offset-3 col-sm-offset-3">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">Register Team</h3>
+          </div>
+          <div class="panel-body">
+            <form class="form-horizontal" method="post" action="">
+              <fieldset>
+                <div class="form-group col-lg-10">
+                    <input type="text" class="form-control" placeholder="Team Name" autocomplete="off" required>
+                </div>
+                <div class="form-group col-lg-10">
+                    <input type="password" class="form-control" placeholder="Password" required>
+                </div>
+              </fieldset>
+              <br>
+
+              <fieldset>
+                <h5>Member One</h5>
+                <div class="form-group col-lg-10">
+                    <input type="text" class="form-control" placeholder="Name" autocomplete="off" required>
+                </div>
+                <div class="form-group col-lg-10">
+                    <input type="number" class="form-control" placeholder="Phone Number" autocomplete="off" required>
+                </div>
+                <div class="form-group col-lg-10">
+                    <input type="text" class="form-control" placeholder="College ID" autocomplete="off">
+                </div>
+              </fieldset>
+              <fieldset>
+                <h5>Member Two</h5>
+                <div class="form-group col-lg-10">
+                    <input type="text" class="form-control" placeholder="Name" autocomplete="off">
+                </div>
+                <div class="form-group col-lg-10">
+                    <input type="number" class="form-control" placeholder="Phone Number" autocomplete="off">
+                </div>
+                <div class="form-group col-lg-10">
+                    <input type="text" class="form-control" placeholder="College ID" autocomplete="off">
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <div class="form-group col-lg-10">
+                    <button type="submit" class="btn btn-primary">Register</button>
+                </div>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

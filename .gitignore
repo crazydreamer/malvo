@@ -3,3 +3,12 @@
 *.sqlite
 __pycache__
 app/__pycache__
+app/__init__.pyc
+app/auth/__init__.pyc
+app/auth/forms.pyc
+app/auth/routes.pyc
+app/mcq/__init__.pyc
+app/mcq/routes.pyc
+app/models.pyc
+config.pyc
+
