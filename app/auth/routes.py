@@ -2,9 +2,10 @@ from flask import render_template, redirect, url_for, flash
 from flask.ext.login import login_user
 
 from . import auth
-from .forms import RegisterForm
-from ..models import User
+from .forms import RegistrationForm
+from ..models import Team, Member
 from .. import db
+
 
 @auth.route('/login')
 def login():
@@ -13,25 +14,35 @@ def login():
 
 @auth.route('/register', methods=['GET', 'POST'])
 def register():
-    form = RegisterForm(csrf_enabled=False)
-    if form.validate_on_submit():
+    form = RegistrationForm()
+    if form.is_submitted():
         db.create_all()
-        user = User.query.filter_by(name=form.name.data).first()
-        if user is not None:
-            flash('Username unavailable')
+        team = Team.query.filter_by(name=form.name.data).first()
+        if team is not None:
+            flash('Team name unavailable')
             return redirect(url_for('.register'))
-        user = User(
+        team = Team(
             name=form.name.data,
-            member_one=form.member_one.data,
-            member_one_id=form.member_one_id.data,
-            member_one_phone=form.member_one_phone.data,
-            member_two=form.member_two.data,
-            member_two_id=form.member_two_id.data,
-            member_two_phone=form.member_two_phone.data,
             password=form.password.data
         )
-        db.session.add(user)
+        member_one = Member(
+            name=form.member_one_name.data,
+            phone=form.member_one_phone.data,
+            id=form.member_one_phone.data,
+            team=team
+        )
+        if form.member_two_name.data is not None:
+            member_two = Member(
+                name=form.member_two_name.data,
+                phone=form.member_two_phone.data,
+                id=form.member_two_phone.data,
+                team=team
+            )
+            db.session.add(member_two)
+        db.session.add(member_one)
+        db.session.add(team)
         db.session.commit()
-        flash('{} was registed successfully'.format(form.name.data))
-        return redirect(url_for('.register'))
+        print('Done')
+        flash('{} was registered successfully'.format(form.name.data))
+        return redirect(url_for('.login'))
     return render_template('auth/register.html', form=form)
