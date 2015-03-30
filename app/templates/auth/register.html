@@ -19,13 +19,13 @@
             <h3 class="panel-title">Register Team</h3>
           </div>
           <div class="panel-body">
-            <form class="form-horizontal" method="post" action="">
+            <form class="form-horizontal" method="post" action="{{ url_for('.register') }}">
               <fieldset>
                 <div class="form-group col-lg-10">
-                    <input type="text" class="form-control" placeholder="Team Name" autocomplete="off" required>
+                  {{ form.name(class='form-control', placeholder='Team Name', autocomplete='off', required=True) }}
                 </div>
                 <div class="form-group col-lg-10">
-                    <input type="password" class="form-control" placeholder="Password" required>
+                  {{ form.password(class='form-control', placeholder='Password', required=True) }}
                 </div>
               </fieldset>
               <br>
@@ -33,31 +33,33 @@
               <fieldset>
                 <h5>Member One</h5>
                 <div class="form-group col-lg-10">
-                    <input type="text" class="form-control" placeholder="Name" autocomplete="off" required>
+                  {{ form.member_one_name(class='form-control', placeholder='Name', required=True, autocomplete='off') }}
                 </div>
                 <div class="form-group col-lg-10">
-                    <input type="number" class="form-control" placeholder="Phone Number" autocomplete="off" required>
+                  {{ form.member_one_phone(class='form-control', placeholder='Phone Number', required=True,
+                        autocomplete='off', type='number') }}
                 </div>
                 <div class="form-group col-lg-10">
-                    <input type="text" class="form-control" placeholder="College ID" autocomplete="off">
+                  {{ form.member_one_id(class='form-control', placeholder='College ID', autocomplete='off') }}
                 </div>
               </fieldset>
               <fieldset>
                 <h5>Member Two</h5>
                 <div class="form-group col-lg-10">
-                    <input type="text" class="form-control" placeholder="Name" autocomplete="off">
+                  {{ form.member_two_name(class='form-control', placeholder='Name', autocomplete='off') }}
                 </div>
                 <div class="form-group col-lg-10">
-                    <input type="number" class="form-control" placeholder="Phone Number" autocomplete="off">
+                  {{ form.member_two_phone(class='form-control', placeholder='Phone Number',
+                        autocomplete='off', type='number') }}
                 </div>
                 <div class="form-group col-lg-10">
-                    <input type="text" class="form-control" placeholder="College ID" autocomplete="off">
+                  {{ form.member_two_id(class='form-control', placeholder='College ID', autocomplete='off') }}
                 </div>
               </fieldset>
 
               <fieldset>
                 <div class="form-group col-lg-10">
-                    <button type="submit" class="btn btn-primary">Register</button>
+                  {{ form.submit(class='btn btn-primary') }}
                 </div>
               </fieldset>
             </form>
