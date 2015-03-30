@@ -1,6 +1,6 @@
 from flask.ext.wtf import Form
 from wtforms import StringField, PasswordField, IntegerField, SubmitField
-from wtforms.validators import DataRequired
+from wtforms.validators import DataRequired, Optional
 
 
 class RegistrationForm(Form):
@@ -8,8 +8,8 @@ class RegistrationForm(Form):
     password = PasswordField('Password', validators=[DataRequired()])
     member_one_name = StringField('Name', validators=[DataRequired()])
     member_one_phone = IntegerField('Phone Number', validators=[DataRequired()])
-    member_one_id = IntegerField('College ID')
-    member_two_name = StringField('Name')
-    member_two_phone = IntegerField('Phone Number')
-    member_two_id = IntegerField('College ID')
-    submit = SubmitField('Register')
+    member_one_id = StringField('College ID', validators=[Optional()])
+    member_two_name = StringField('Name', validators=[Optional()])
+    member_two_phone = IntegerField('Phone Number', validators=[Optional()])
+    member_two_id = StringField('College ID', validators=[Optional()])
+    submit = SubmitField('Register', validators=[Optional()])

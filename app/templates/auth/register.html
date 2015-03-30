@@ -20,6 +20,7 @@
           </div>
           <div class="panel-body">
             <form class="form-horizontal" method="post" action="{{ url_for('.register') }}">
+            {{ form.csrf_token }}
               <fieldset>
                 <div class="form-group col-lg-10">
                   {{ form.name(class='form-control', placeholder='Team Name', autocomplete='off', required=True) }}

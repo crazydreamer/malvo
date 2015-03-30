@@ -1,4 +1,4 @@
-from flask import render_template, redirect, url_for, flash
+from flask import render_template, redirect, url_for, flash, request
 from flask.ext.login import login_user
 
 from . import auth
@@ -15,12 +15,12 @@ def login():
 @auth.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegistrationForm()
-    if form.is_submitted():
+    if form.validate_on_submit():
         db.create_all()
         team = Team.query.filter_by(name=form.name.data).first()
         if team is not None:
             flash('Team name unavailable')
-            return redirect(url_for('.register'))
+            return render_template('auth/register.html', form=form)
         team = Team(
             name=form.name.data,
             password=form.password.data
@@ -28,21 +28,23 @@ def register():
         member_one = Member(
             name=form.member_one_name.data,
             phone=form.member_one_phone.data,
-            id=form.member_one_phone.data,
+            college_id=form.member_one_id.data,
             team=team
         )
-        if form.member_two_name.data is not None:
+        if form.member_two_name.data:
             member_two = Member(
                 name=form.member_two_name.data,
                 phone=form.member_two_phone.data,
-                id=form.member_two_phone.data,
+                college_id=form.member_two_id.data,
                 team=team
             )
             db.session.add(member_two)
         db.session.add(member_one)
         db.session.add(team)
         db.session.commit()
-        print('Done')
         flash('{} was registered successfully'.format(form.name.data))
         return redirect(url_for('.login'))
+    if request.method == 'POST':
+        flash('Form validation error')
+        return render_template('auth/register.html', form=form)
     return render_template('auth/register.html', form=form)
