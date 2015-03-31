@@ -7,8 +7,8 @@
     <div class="row">
       <div class="col-lg-5 col-md-6 col-sm-7  col-lg-offset-3 col-md-offset-3 col-sm-offset-3">
         <div>
-        {% for message in get_flashed_messages() %}
-          <div class="alert alert-dismissible alert-danger">
+        {% for category, message in get_flashed_messages(with_categories=true) %}
+          <div class="alert alert-dismissible alert-{{ category }}">
             <button type="button" class="close" data-dismiss="alert">×</button>
             {{ message }}
           </div>

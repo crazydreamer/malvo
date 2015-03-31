@@ -14,10 +14,10 @@ def login():
     if form.validate_on_submit():
         team = Team.query.filter_by(name=form.team_name.data).first()
         if team is None or not team.verify_password(form.password.data):
-            flash('Invalid Team Name or Password')
+            flash('Invalid Team Name or Password', 'danger')
             return redirect(url_for('.login'))
         login_user(team)
-        flash('{} logged in successfully'.format(form.team_name.data))
+        flash('{} logged in successfully'.format(form.team_name.data), 'success')
         return redirect(url_for('.login'))
     return render_template('auth/login.html', form=form)
 
@@ -26,7 +26,7 @@ def login():
 @login_required
 def logout():
     logout_user()
-    flash('Logged Out')
+    flash('Logged Out', 'success')
     return redirect(url_for('.login'))
 
 
@@ -37,7 +37,7 @@ def register():
         db.create_all()
         team = Team.query.filter_by(name=form.name.data).first()
         if team is not None:
-            flash('Team name unavailable')
+            flash('Team Name unavailable', 'danger')
             return render_template('auth/register.html', form=form)
         team = Team(
             name=form.name.data,
@@ -60,9 +60,9 @@ def register():
         db.session.add(member_one)
         db.session.add(team)
         db.session.commit()
-        flash('{} was registered successfully'.format(form.name.data))
+        flash('{} registered successfully'.format(form.name.data), 'success')
         return redirect(url_for('.login'))
     if request.method == 'POST':
-        flash('Form validation error')
+        flash('Form validation error', 'danger')
         return render_template('auth/register.html', form=form)
     return render_template('auth/register.html', form=form)
