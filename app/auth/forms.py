@@ -12,4 +12,10 @@ class RegistrationForm(Form):
     member_two_name = StringField('Name', validators=[Optional()])
     member_two_phone = IntegerField('Phone Number', validators=[Optional()])
     member_two_id = StringField('College ID', validators=[Optional()])
-    submit = SubmitField('Register', validators=[Optional()])
+    submit = SubmitField('Register')
+
+
+class LoginForm(Form):
+    team_name = StringField('Team Name', validators=[DataRequired()])
+    password = PasswordField('Password', validators=[DataRequired()])
+    submit = SubmitField('Login')

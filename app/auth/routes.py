@@ -1,15 +1,33 @@
 from flask import render_template, redirect, url_for, flash, request
-from flask.ext.login import login_user
+from flask.ext.login import login_user, logout_user, login_required
 
 from . import auth
 from .forms import RegistrationForm
+from .forms import LoginForm
 from ..models import Team, Member
 from .. import db
 
 
-@auth.route('/login')
+@auth.route('/login', methods=['GET', 'POST'])
 def login():
-    return render_template('auth/login.html')
+    form = LoginForm()
+    if form.validate_on_submit():
+        team = Team.query.filter_by(name=form.team_name.data).first()
+        if team is None or not team.verify_password(form.password.data):
+            flash('Invalid Team Name or Password')
+            return redirect(url_for('.login'))
+        login_user(team)
+        flash('{} logged in successfully'.format(form.team_name.data))
+        return redirect(url_for('.login'))
+    return render_template('auth/login.html', form=form)
+
+
+@auth.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    flash('Logged Out')
+    return redirect(url_for('.login'))
 
 
 @auth.route('/register', methods=['GET', 'POST'])
