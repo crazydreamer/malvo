@@ -16,4 +16,7 @@ app/.models.py.swp
 app/auth/.__init__.py.swp
 app/auth/.forms.py.swp
 app/auth/.routes.py.swp
+app/mcq/.forms.py.swp
+app/mcq/.routes.py.swp
+app/mcq/forms.pyc
 

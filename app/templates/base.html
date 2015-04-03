@@ -13,6 +13,9 @@
       body {
         background-image: url('{{ url_for("static", filename="images/bg-sky.png") }}');
       }
+    
+    {% block stylesheets %}
+    {% endblock %}
     </style>
   {% endblock %}
   </head>
@@ -34,7 +37,7 @@
 
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
             <ul class="nav navbar-nav">
-              <li><a href="#">MCQs</a></li>
+              <li><a href="#">MCQ</a></li>
               <li><a href="#">Programming</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
