@@ -9,6 +9,7 @@ class Team(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), nullable=False, unique=True, index=True)
     password_hash = db.Column(db.String(128), nullable=False)
+    language = db.Column(db.String(32), nullable=False)
     members = db.relationship('Member', backref='team', lazy='dynamic')
     mcq_score = db.Column(db.Integer, default=-1, index=True)
     prog_score = db.Column(db.Integer, default=-1, index=True)

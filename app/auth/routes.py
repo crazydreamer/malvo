@@ -41,7 +41,8 @@ def register():
             return render_template('auth/register.html', form=form)
         team = Team(
             name=form.name.data,
-            password=form.password.data
+            password=form.password.data,
+            language=form.language.data
         )
         member_one = Member(
             name=form.member_one_name.data,
