@@ -19,4 +19,6 @@ app/auth/.routes.py.swp
 app/mcq/.forms.py.swp
 app/mcq/.routes.py.swp
 app/mcq/forms.pyc
+app/programming/__init__.pyc
+app/programming/routes.pyc
 
